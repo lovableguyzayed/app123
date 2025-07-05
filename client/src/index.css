@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Retro font hierarchy */
+.retro-title {
+  font-family: 'Orbitron', 'Russo One', monospace;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(239, 239, 187, 0.5), 0 0 20px rgba(107, 136, 211, 0.3);
+}
+
+.retro-heading {
+  font-family: 'Russo One', 'Orbitron', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 5px rgba(239, 239, 187, 0.4);
+}
+
+.retro-text {
+  font-family: 'Share Tech Mono', 'Orbitron', monospace;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 3px rgba(107, 136, 211, 0.3);
+}
+
+.retro-display {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(239, 239, 187, 0.6), 0 0 15px rgba(239, 239, 187, 0.3);
+  background: linear-gradient(45deg, #EFEFBB, #6B88D3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+::-webkit-scrollbar { 
+  display: none;
+}
+
+body { 
+  font-family: 'Inter', monospace;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0a0a1a 100%);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+@keyframes robot-entrance {
+  0% { 
+    transform: translateY(50px) scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 360 degree rotation animation for rate confirmation */
+.robot-confirm-rate {
+  animation: confirm-spin-360 1.5s ease-in-out 1;
+}
+
+@keyframes confirm-spin-360 {
+  0% { 
+    transform: scale(1) rotate(0deg); 
+    filter: brightness(1) saturate(1); 
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+  25% { 
+    transform: scale(1.1) rotate(90deg); 
+    filter: brightness(2) saturate(2) hue-rotate(90deg); 
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg); 
+    filter: brightness(3) saturate(3) hue-rotate(180deg); 
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.5);
+  }
+  75% { 
+    transform: scale(1.1) rotate(270deg); 
+    filter: brightness(2.5) saturate(2.5) hue-rotate(270deg); 
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+  }
+  100% { 
+    transform: scale(1) rotate(360deg); 
+    filter: brightness(1) saturate(1); 
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
+@keyframes robot-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+@keyframes robot-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-20deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+@keyframes eye-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes eye-scan {
+  0%, 100% { background: linear-gradient(135deg, #6B88D3, #EFEFBB); }
+  33% { background: linear-gradient(135deg, #00ff00, #EFEFBB); }
+  66% { background: linear-gradient(135deg, #ff6b6b, #EFEFBB); }
+}
+
+@keyframes antenna-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes chest-glow {
+  0%, 100% { box-shadow: 0 0 15px #6B88D3, inset 0 0 10px rgba(107, 136, 211, 0.3); }
+  50% { box-shadow: 0 0 30px #EFEFBB, inset 0 0 20px rgba(239, 239, 187, 0.5); }
+}
+
+@keyframes logo-glow {
+  0%, 100% { text-shadow: 0 0 15px #6B88D3; }
+  50% { text-shadow: 0 0 30px #EFEFBB, 0 0 45px #6B88D3; }
+}
+
+@keyframes subtitle-fade {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+
+@keyframes button-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.robot-container {
+  animation: robot-entrance 2s ease-out, robot-float 4s ease-in-out 2s infinite;
+}
+
+.robot-eye {
+  animation: eye-scan 3s ease-in-out infinite, eye-blink 6s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+.robot-antenna {
+  animation: antenna-pulse 2s ease-in-out infinite;
+}
+
+.robot-arm-left {
+  animation: robot-wave 3s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.robot-arm-right {
+  animation: robot-wave 3s ease-in-out infinite 1.5s;
+  transform-origin: top center;
+}
+
+.robot-chest {
+  animation: chest-glow 3s ease-in-out infinite;
+}
+
+.logo-text {
+  animation: logo-glow 4s ease-in-out infinite;
+}
+
+.subtitle-text {
+  animation: subtitle-fade 1s ease-out 1s both;
+}
+
+.enter-button {
+  animation: button-pulse 2s ease-in-out 3s infinite;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Chat Calculator Robot Animations */
+@keyframes robot-idle {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-3px) scale(1.01); }
+}
+
+@keyframes robot-excited {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(-2deg); }
+  50% { transform: scale(1.08) rotate(0deg); }
+  75% { transform: scale(1.05) rotate(2deg); }
+}
+
+@keyframes arm-wave {
+  0%, 100% { transform: rotate(0deg); }
+  33% { transform: rotate(-30deg); }
+  66% { transform: rotate(30deg); }
+}
+
+/* Chat Calculator Animation Classes */
+.robot-idle .robot-body {
+  animation: robot-idle 4s ease-in-out infinite;
+}
+
+.robot-excited .robot-body {
+  animation: robot-excited 1.5s ease-in-out 3;
+}
+
+.robot-wave .robot-arm-left {
+  animation: arm-wave 1.2s ease-in-out 4;
+}
+
+.robot-wave .robot-arm-right {
+  animation: arm-wave 1.2s ease-in-out 4 0.3s;
+}
+
+/* Chat Calculator UI Styles */
+.btn-retro {
+  background: linear-gradient(135deg, #6B88D3, #00008B);
+  border: 2px solid #6B88D3;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(107, 136, 211, 0.3);
+  font-weight: 500;
+}
+
+.btn-retro:hover {
+  background: linear-gradient(135deg, #EFEFBB, #6B88D3);
+  color: #00008B;
+  border-color: #EFEFBB;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 239, 187, 0.4);
+}
+
+.input-retro {
+  background: linear-gradient(135deg, #1a1a2e, #0a0a1a);
+  border: 2px solid #6B88D3;
+  transition: all 0.3s ease;
+}
+
+.input-retro:focus {
+  border-color: #EFEFBB;
+  box-shadow: 0 0 15px rgba(239, 239, 187, 0.3);
+  outline: none;
+  background: linear-gradient(135deg, #252542, #1a1a2e);
+}
+
+.chat-bubble-retro {
+  background: linear-gradient(135deg, #6B88D3, #00008B);
+  border: 2px solid #EFEFBB;
+  border-radius: 15px 15px 5px 15px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(107, 136, 211, 0.3);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  height: 90px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.retro-panel {
+  background: linear-gradient(135deg, #1a1a2e, #0a0a1a);
+  border: 2px solid #00008B;
+  box-shadow: inset 0 2px 10px rgba(107, 136, 211, 0.2);
+  overflow: visible;
+}
+
+/* Custom dropdown styling */
+.retro-panel {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Mobile responsive scaling */
+@media (max-width: 768px) and (min-width: 376px) {
+  .chat-calculator {
+    transform: scale(0.75);
+    transform-origin: top left;
+    width: 133.33vw;
+    height: 133.33vh;
+  }
+  
+  html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* iPhone SE and small devices */
+@media (max-width: 375px) {
+  body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .chat-calculator {
+    transform: scale(0.65);
+    transform-origin: top left;
+    width: 153.85vw;
+    height: 153.85vh;
+    overflow: hidden;
+  }
+  
+  /* Compact header for iPhone SE */
+  .chat-calculator .h-44 {
+    height: 7rem !important;
+  }
+  
+  .chat-calculator .top-44 {
+    top: 7rem !important;
+  }
+  
+  /* Enable scrolling for right panel */
+  .chat-calculator .bg-bg-card {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: calc(100vh - 7rem) !important;
+    max-height: calc(100vh - 7rem) !important;
+  }
+  
+  /* Reduce spacing for small screens */
+  .chat-calculator .space-y-4 > * + * {
+    margin-top: 0.75rem !important;
+  }
+  
+  .chat-calculator .space-y-6 > * + * {
+    margin-top: 1rem !important;
+  }
+}
+
+/* Container adjustments for dropdown visibility */
+.w-1\/2.bg-bg-card {
+  overflow: visible !important;
+  position: relative;
+  z-index: 10;
+}
+
+/* Custom utilities */
+.border-3 {
+  border-width: 3px;
+}
+
+.w-30 {
+  width: 7.5rem;
+}
+
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.show-chat {
+  opacity: 1 !important;
+}
+
+.fixed-robot-position {
+  position: relative;
+  min-height: 120px;
+}
+
+.chat-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
